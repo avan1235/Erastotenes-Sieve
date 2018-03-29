@@ -6,18 +6,29 @@ import java.util.Scanner;
 public class PrimeNumbers {
     public static void main(String[] args){
         Scanner inputKeyboard = new Scanner(System.in);
-        //int number = inputKeyboard.nextInt();
+        int minNumber = inputKeyboard.nextInt();
+        int maxNumber = inputKeyboard.nextInt();
 
-        Erastotenes.showPrimes(3, 12);
+        Erastotenes.showPrimes(minNumber, maxNumber);
         System.out.println();
-        System.out.println(PrimeChecker.ifPrime(12));
 
-        int[] table = new int[100];
-        for (int i = 0; i < 100; i++){
-            table[i] = (int) (Math.random()*100);
+        int numberToCheck = inputKeyboard.nextInt();
+        System.out.println(PrimeChecker.ifPrime(numberToCheck));
+
+        int sizeOfArray = 20;
+        int[] table = new int[sizeOfArray];
+        for (int i = 0; i < sizeOfArray; i++){
+            table[i] = (int) (Math.random()*sizeOfArray);
+        }
+        System.out.println();
+
+        int[] primeNumbers = PrimeChecker.ifTableHasPrimes(table);
+
+        for(int i = 0; i < table.length; i++){
+            System.out.printf("%4d", table[i]);
         }
 
-        Integer[] primeNumbers = PrimeChecker.ifTableHasPrimes(table);
+        System.out.println();
 
         for (int i = 0; i < primeNumbers.length; i++){
             System.out.printf("%4d", primeNumbers[i]);

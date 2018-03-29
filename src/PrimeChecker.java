@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class PrimeChecker {
             return false;
     }
 
-    public static Integer[] ifTableHasPrimes(int[] tableOfNumbers){
+    public static int[] ifTableHasPrimes(int[] tableOfNumbers){
         int maxNumber = tableOfNumbers[0];
         for(int i = 1; i < tableOfNumbers.length; i++){
             if(tableOfNumbers[i] > maxNumber)
@@ -37,8 +38,7 @@ public class PrimeChecker {
         else
             System.out.println("Problem during creating Erastotenes sieve.");
 
-        Integer[] tableToReturn = new Integer[results.size()];
-        results.toArray(tableToReturn);
+        int[] tableToReturn = results.stream().mapToInt(Integer::intValue).toArray();
 
         return tableToReturn;
     }
