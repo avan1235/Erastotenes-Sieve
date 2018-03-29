@@ -2,9 +2,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Maciej Procyk on 29.03.2018.
- */
 public class PrimeChecker {
 
     public static boolean ifPrime(int numberToCheck){

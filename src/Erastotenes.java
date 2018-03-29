@@ -1,13 +1,10 @@
-/**
- * Created by Maciej Procyk on 29.03.2018.
- */
-public class Erastotenes {
+class Erastotenes {
     private boolean[] sieve;
     private int size;
     private static final int shift = 2;
     private boolean sieveCreated = false;
 
-    public Erastotenes(int size){
+    private Erastotenes(int size){
         this.size = size;
         this.sieve = new boolean[this.size - 1];
 
@@ -20,7 +17,7 @@ public class Erastotenes {
      * a dalej już zmieniać się będzie wskaźnik w sposób liniowy
      */
 
-    public void createSieve(){
+    private void createSieve(){
         for(int i = shift; i*i<=this.size; i++){
             if(this.sieve[i-shift] == true){
                 int j = i*i;
@@ -33,11 +30,11 @@ public class Erastotenes {
         this.sieveCreated = true;
     }
 
-    public boolean ifCreated(){
+    private boolean ifCreated(){
         return this.sieveCreated;
     }
 
-    public static void showPrimes(int minNumber, int maxNumber){
+    private static void showPrimes(int minNumber, int maxNumber){
         Erastotenes mySieve = new Erastotenes(maxNumber);
         mySieve.createSieve();
         if (mySieve.ifCreated() == true){
@@ -48,11 +45,7 @@ public class Erastotenes {
         }
     }
 
-    public boolean returnPrimeNumberChecker(int number){
-        if(number < 2)
-            return false;
-        else
-            return this.sieve[number-shift];
+    private boolean returnPrimeNumberChecker(int number) {
+        return number >= 2 && this.sieve[number - shift];
     }
-
 }
