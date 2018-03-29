@@ -14,10 +14,9 @@ public class Erastotenes {
         for(int i = 0; i<this.size-1; i++){
             sieve[i] = true;
         }
-
     }
     /*
-     * Odpowiednikiem dwójkki będzie wypełnienie tablicy sieve[0]
+     * Odpowiednikiem dwójki będzie wypełnienie tablicy sieve[0]
      * a dalej już zmieniać się będzie wskaźnik w sposób liniowy
      */
 
@@ -34,21 +33,26 @@ public class Erastotenes {
         this.sieveCreated = true;
     }
 
-    public void showPrimes(){
-        for(int i = 0; i < this.sieve.length; i++){
-            if(this.sieve[i] == true)
-                System.out.printf("%4d", i+shift);
+    public boolean ifCreated(){
+        return this.sieveCreated;
+    }
+
+    public static void showPrimes(int minNumber, int maxNumber){
+        Erastotenes mySieve = new Erastotenes(maxNumber);
+        mySieve.createSieve();
+        if (mySieve.ifCreated() == true){
+            for(int i = minNumber; i <= maxNumber; i++){
+                if(mySieve.returnPrimeNumberChecker(i) == true)
+                    System.out.printf("%4d", i);
+            }
         }
     }
 
-    public boolean ifPrime(int number){
-        if (this.sieveCreated == true){
-            return this.sieve[number-shift];
-        }
-        else{
-            System.out.printf("\n\nERROR: Sieve has NOT been created yet.\nCannot check this number\n\n");
+    public boolean returnPrimeNumberChecker(int number){
+        if(number < 2)
             return false;
-        }
+        else
+            return this.sieve[number-shift];
     }
 
 }

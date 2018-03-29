@@ -6,13 +6,21 @@ import java.util.Scanner;
 public class PrimeNumbers {
     public static void main(String[] args){
         Scanner inputKeyboard = new Scanner(System.in);
-        int number = inputKeyboard.nextInt();
+        //int number = inputKeyboard.nextInt();
 
-        Erastotenes mySieve = new Erastotenes(number);
-        mySieve.createSieve();
-        if(mySieve.ifPrime(number) == true)
-            System.out.println("Liczba pierwsza");
-        else
-            System.out.println("Nie liczba pierwsza");
+        Erastotenes.showPrimes(3, 12);
+        System.out.println();
+        System.out.println(PrimeChecker.ifPrime(12));
+
+        int[] table = new int[100];
+        for (int i = 0; i < 100; i++){
+            table[i] = (int) (Math.random()*100);
+        }
+
+        Integer[] primeNumbers = PrimeChecker.ifTableHasPrimes(table);
+
+        for (int i = 0; i < primeNumbers.length; i++){
+            System.out.printf("%4d", primeNumbers[i]);
+        }
     }
 }
