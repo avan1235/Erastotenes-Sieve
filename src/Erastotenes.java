@@ -4,7 +4,7 @@ class Erastotenes {
     private static final int shift = 2;
     private boolean sieveCreated = false;
 
-    private Erastotenes(int size){
+    public Erastotenes(int size){
         this.size = size;
         this.sieve = new boolean[this.size - 1];
 
@@ -17,7 +17,7 @@ class Erastotenes {
      * a dalej już zmieniać się będzie wskaźnik w sposób liniowy
      */
 
-    private void createSieve(){
+    public void createSieve(){
         for(int i = shift; i*i<=this.size; i++){
             if(this.sieve[i-shift] == true){
                 int j = i*i;
@@ -30,22 +30,25 @@ class Erastotenes {
         this.sieveCreated = true;
     }
 
-    private boolean ifCreated(){
+    public boolean ifCreated(){
         return this.sieveCreated;
     }
 
-    private static void showPrimes(int minNumber, int maxNumber){
+    public static void showPrimes(int minNumber, int maxNumber){
         Erastotenes mySieve = new Erastotenes(maxNumber);
         mySieve.createSieve();
         if (mySieve.ifCreated() == true){
             for(int i = minNumber; i <= maxNumber; i++){
                 if(mySieve.returnPrimeNumberChecker(i) == true)
-                    System.out.printf("%4d", i);
+                    System.out.printf("%6d", i);
             }
         }
     }
 
-    private boolean returnPrimeNumberChecker(int number) {
-        return number >= 2 && this.sieve[number - shift];
+    public boolean returnPrimeNumberChecker(int number) {
+        if(number < 2)
+            return false;
+        else
+            return this.sieve[number - shift];
     }
 }
